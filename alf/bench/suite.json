@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "protocol": "alf-downstream-v2 = paper2604-v3-owned-isoflops (20 tasks) + 6 CORE tasks",
+  "protocol_status": "Released-code protocol; historical dataset revisions and long-context behavior require comparison",
+  "upstreams": {
+    "paper2604": {
+      "repository": "kschwethelm/looped-lm-scaling",
+      "commit": "ad7d8f3055501e4c84ced7797f772dce2f8e2107",
+      "paper": "https://arxiv.org/pdf/2604.21106v3"
+    }
+  },
+  "base_suite": {
+    "protocol": "paper2604-v3-owned-isoflops",
+    "paper": "https://arxiv.org/pdf/2604.21106v3"
+  },
+  "defaults": {
+    "max_per_task": 10000,
+    "seed": 1337,
+    "fewshot_seed": 1234
+  },
+  "upstream_defaults_not_read_here": {
+    "comment": "carried from the upstream suite and not honoured by this scorer, which caps at min(max_seq_len, 4096), packs 8 rows per forward and never truncates",
+    "dtype": "float32",
+    "context_policy": "error",
+    "model_max_length": 20480,
+    "batch_size": 1,
+    "wandb": false
+  },
+  "repo_aliases": {
+    "nq_open": "google-research-datasets/nq_open",
+    "web_questions": "stanfordnlp/web_questions"
+  },
+  "tasks": [
+    {
+      "name": "triviaqa",
+      "engine": "paper2604",
+      "task": "triviaqa",
+      "axis": "parametric_knowledge",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 10000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "nq",
+      "engine": "paper2604",
+      "task": "nq",
+      "axis": "parametric_knowledge",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 3610,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "webq",
+      "engine": "paper2604",
+      "task": "webq",
+      "axis": "parametric_knowledge",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 2032,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "lambada_openai",
+      "engine": "paper2604",
+      "task": "lambada_openai",
+      "axis": "reading_comp",
+      "bundle": "core",
+      "fewshot": 0,
+      "task_type": "language_modeling",
+      "expected_examples": 5153,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "tydiqa_goldp",
+      "engine": "paper2604",
+      "task": "tydiqa_goldp",
+      "axis": "reading_comp",
+      "bundle": "saunshi",
+      "fewshot": 3,
+      "task_type": "language_modeling",
+      "expected_examples": 440,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "squadv2",
+      "engine": "paper2604",
+      "task": "squadv2",
+      "axis": "reading_comp",
+      "bundle": "saunshi",
+      "fewshot": 3,
+      "task_type": "language_modeling",
+      "expected_examples": 5928,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "drop",
+      "engine": "paper2604",
+      "task": "drop",
+      "axis": "reading_comp",
+      "bundle": "saunshi",
+      "fewshot": 3,
+      "task_type": "language_modeling",
+      "expected_examples": 9535,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "coqa",
+      "engine": "paper2604",
+      "task": "coqa",
+      "axis": "reading_comp",
+      "bundle": "saunshi",
+      "fewshot": 1,
+      "task_type": "language_modeling",
+      "expected_examples": 7983,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "svamp",
+      "engine": "paper2604",
+      "task": "svamp",
+      "axis": "math_word_problems",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 300,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "asdiv",
+      "engine": "paper2604",
+      "task": "asdiv",
+      "axis": "math_word_problems",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 2305,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "mawps",
+      "engine": "paper2604",
+      "task": "mawps",
+      "axis": "math_word_problems",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 1772,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "induction_head",
+      "engine": "paper2604",
+      "task": "induction_head",
+      "axis": "reasoning_primitives",
+      "bundle": "owned",
+      "fewshot": 0,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "var_assign_d0_math",
+      "engine": "paper2604",
+      "task": "var_assign_d0_math",
+      "axis": "reasoning_primitives",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "var_assign_d0_code",
+      "engine": "paper2604",
+      "task": "var_assign_d0_code",
+      "axis": "reasoning_primitives",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "var_assign_d1_math",
+      "engine": "paper2604",
+      "task": "var_assign_d1_math",
+      "axis": "reasoning_primitives",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "var_assign_d1_code",
+      "engine": "paper2604",
+      "task": "var_assign_d1_code",
+      "axis": "reasoning_primitives",
+      "bundle": "saunshi",
+      "fewshot": 5,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "bigbench_dyck_languages",
+      "engine": "paper2604",
+      "task": "bigbench_dyck_languages",
+      "axis": "compositional_symbolic",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "language_modeling",
+      "expected_examples": 1000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "bigbench_qa_wikidata",
+      "engine": "paper2604",
+      "task": "bigbench_qa_wikidata",
+      "axis": "compositional_symbolic",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "language_modeling",
+      "expected_examples": 10000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "arc_easy",
+      "engine": "paper2604",
+      "task": "arc_easy",
+      "axis": "compositional_symbolic",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "multiple_choice",
+      "expected_examples": 2376,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "bigbench_cs_algorithms",
+      "engine": "paper2604",
+      "task": "bigbench_cs_algorithms",
+      "axis": "compositional_symbolic",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "language_modeling",
+      "expected_examples": 1320,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "hellaswag",
+      "engine": "paper2604",
+      "task": "hellaswag",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "multiple_choice",
+      "expected_examples": 10000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "hellaswag_zeroshot",
+      "engine": "paper2604",
+      "task": "hellaswag_zeroshot",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 0,
+      "task_type": "multiple_choice",
+      "expected_examples": 10000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "jeopardy",
+      "engine": "paper2604",
+      "task": "jeopardy",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "language_modeling",
+      "expected_examples": 2117,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "arc_challenge",
+      "engine": "paper2604",
+      "task": "arc_challenge",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "multiple_choice",
+      "expected_examples": 1172,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "piqa",
+      "engine": "paper2604",
+      "task": "piqa",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "multiple_choice",
+      "expected_examples": 1838,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    },
+    {
+      "name": "squad",
+      "engine": "paper2604",
+      "task": "squad",
+      "axis": "core_extra",
+      "bundle": "core",
+      "fewshot": 10,
+      "task_type": "language_modeling",
+      "expected_examples": 10000,
+      "continuation_delimiter": " ",
+      "metrics": [
+        "continuation_loss",
+        "ppl",
+        "accuracy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+Attention Latent Feedback
+Copyright (c) 2026 the authors. Released under the MIT License (LICENSE).
+
+This repository contains material derived from the following projects.
+
+karpathy/nanochat (https://github.com/karpathy/nanochat)
+  Copyright (c) 2025 Andrej Karpathy. MIT License, see third_party/nanochat.LICENSE.
+  - alf/vendor/core_eval.py is copied from nanochat/core_eval.py, trimmed to the five prompt-rendering and
+    batching functions this project calls; the retained bodies are byte-identical. The edits are the removal of
+    the random and torch.distributed imports, which only the dropped code used; of stack_sequences, the one
+    function that needed torch; of the two schema functions, which the suite's two task types never reach; and a
+    note marking the file's inherited TODO list as upstream's.
+  - alf/eval/downstream.py draws its few-shot examples and judges answers as nanochat's evaluate_example does;
+    the forward pass and the packing are this repository's.
+  Those functions render and tokenize the prompts of the CORE metric of the DCLM paper (arXiv:2406.11794). Eleven
+  of the suite's tasks are taken from the published CORE archive, their records copied verbatim; each of those
+  stays under the licence of its own source dataset.
+
+kschwethelm/looped-lm-scaling (https://github.com/kschwethelm/looped-lm-scaling)
+  Copyright (c) 2026 Kristian Schwethelm. MIT License, see third_party/looped-lm-scaling.LICENSE.
+  - alf/vendor/saunshi_bundle.py and alf/vendor/owned_bundle.py are copied from that project at
+    ad7d8f3055501e4c84ced7797f772dce2f8e2107 (dev/eval_bundles/saunshi/prepare_saunshi_bundle.py and
+    dev/eval_bundles/owned/prepare_owned_bundle.py): the builders of the suite's ten HuggingFace-sourced tasks
+    and of its five synthetic ones, with their storage and command-line parts removed and the dataset loader
+    passed in. The record-building logic is unchanged, so the generated items are identical.
+  The suite follows Schwethelm et al. (arXiv:2604.21106), whose benchmark in turn follows Saunshi et al.
+  (arXiv:2502.17416, Section 5.1), with the reasoning primitives of arXiv:2409.19044.
+
+marin-community/marin (https://github.com/marin-community/marin) and levanter
+  Apache License 2.0. Used as separate checkouts under their own licenses and not distributed with this
+  repository. The mixture-of-experts backbone, the train step, the optimizer heuristic, the data pipeline, the
+  checkpointing and the scaling-ladder recipe are Marin's, at commit 8577d258214dd0dcb992c04458ee4eb10496d4e5;
+  alf/marin/ is the glue that swaps the model and adds gradient accumulation, and alf/rungs.py interpolates one
+  further rung with Marin's own functions.
+
+The attention-residual backbone follows "Attention Residuals" (arXiv:2603.15031). The fusion baseline is the
+Full-bandwidth Transformer (arXiv:2608.08888). The input injection path follows Recycler and LoRM
+(https://github.com/ifm-ai/LoRM). The training corpus is Dolma 3 (Allen Institute for AI), released under ODC-BY;
+the levanter caches alf/tokenize_dolma.py builds from it are derivative databases under that licence. The CORE
+evaluation bundle is distributed by the nanochat project and follows the Mosaic Eval Gauntlet v0.3.0 and the DCLM
+paper.

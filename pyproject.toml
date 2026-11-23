@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alf"
+version = "1.0.0"
+description = "Attention Latent Feedback: every sublayer attends over the deeper outputs of the previous position"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+
+# JAX, levanter, haliax and equinox come from the Marin environment this package is installed into (see README.md);
+# pinning them here would fight that environment, so only the pure-Python helpers are declared.
+dependencies = [
+  "numpy>=1.26",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# The CORE scorer is nanochat's, which renders its prompts from jinja2 templates.
+downstream = ["jinja2>=3.1"]
+data = ["pyarrow>=15.0", "datasets>=4.0", "huggingface_hub>=0.24"]
+dev = ["ruff>=0.6"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "NOTICE", "third_party/*.LICENSE"]
+
+[tool.setuptools.packages.find]
+include = ["alf*"]
+
+
+[tool.ruff]
+# Wide enough for the einsums, the shape bookkeeping and the readout prints without wrapping them to no purpose.
+line-length = 140
+target-version = "py312"

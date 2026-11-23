@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper."
+title: "Attention Latent Feedback"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/xjxyys/ALF"
+url: "https://arxiv.org/abs/2611.31154"
+identifiers:
+  - type: other
+    value: "arXiv:2611.31154"
+    description: "The arXiv preprint of the paper."
+authors:
+  - given-names: Xuyuan
+    family-names: Xiong
+  - given-names: Siyu
+    family-names: Chen
+  - given-names: Mengzhao
+    family-names: Chen
+  - given-names: Yue
+    family-names: Su
+  - given-names: Zhuoran
+    family-names: Yang
+  - given-names: Ping
+    family-names: Luo
+  - given-names: Xihui
+    family-names: Liu
+preferred-citation:
+  type: article
+  title: "Attention Latent Feedback"
+  year: 2026
+  journal: "arXiv preprint arXiv:2611.31154"
+  url: "https://arxiv.org/abs/2611.31154"
+  identifiers:
+    - type: other
+      value: "arXiv:2611.31154"
+      description: "The arXiv preprint of the paper."
+  authors:
+    - given-names: Xuyuan
+      family-names: Xiong
+    - given-names: Siyu
+      family-names: Chen
+    - given-names: Mengzhao
+      family-names: Chen
+    - given-names: Yue
+      family-names: Su
+    - given-names: Zhuoran
+      family-names: Yang
+    - given-names: Ping
+      family-names: Luo
+    - given-names: Xihui
+      family-names: Liu
